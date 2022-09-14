@@ -1,0 +1,51 @@
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile>
+    <div class="flex-row" [formGroup]="currencyConversionFormGroup">
+      <div class="flex-column">
+        <mat-form-field>
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" matInput formControlName="amount" required (change)="convertCurrency(true)">
+        </mat-form-field>
+      </div>
+      <div class="flex-column">
+        <mat-checkbox formControlName="override">
+          Override Rate
+        </mat-checkbox>
+      </div>
+      <div class="flex-column">
+        <span>{{fromCurrency}}</span><button mat-button (click)="swapCurrency()"><mat-icon aria-hidden="false" fontIcon="swap_horiz"></mat-icon></button><span>{{toCurrency}}</span>
+      </div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile style="overflow: visible;">
+    <div class="flex-row">
+      <div class="flex-column">
+        <b>Polling Rate</b>
+        <ng-container *ngIf="isEurToUsd">
+          <span class="wrap">1 EUR = {{pollingRate | number : '1.2-2'}} USD</span>
+          <span class="wrap">1 USD = {{(1/pollingRate) | number : '1.2-2'}} EUR</span>
+        </ng-container>
+        <ng-container *ngIf="isUsdToEur">
+          <span class="wrap">1 USD = {{pollingRate | number : '1.2-2'}} EUR</span>
+          <span class="wrap">1 EUR = {{(1/pollingRate) | number : '1.2-2'}} USD</span>
+        </ng-container>
+      </div>
+      <div class="flex-column">
+        <b>Current Rate</b>
+        <ng-container *ngIf="isEurToUsd">
+          <span class="wrap">1 EUR = {{exchangeRate | number : '1.2-2'}} USD</span>
+          <span class="wrap">1 USD = {{(1/exchangeRate) | number : '1.2-2'}} EUR</span>
+        </ng-container>
+        <ng-container *ngIf="isUsdToEur">
+          <span class="wrap">1 USD = {{exchangeRate | number : '1.2-2'}} EUR</span>
+          <span class="wrap">1 EUR = {{(1/exchangeRate) | number : '1.2-2'}} USD</span>
+        </ng-container>
+      </div>
+      <div class="flex-column">
+        <b>Converted Amount</b>
+        <span class="wrap" *ngIf="isEurToUsd">{{amount.value}} EUR = {{convertedAmount | number : '1.2-2'}} USD</span>
+        <span class="wrap" *ngIf="isUsdToEur">{{amount.value}} USD = {{convertedAmount | number : '1.2-2'}} EUR</span>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'scss/base';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.flex-row {
+  display: grid;
+  flex-flow: row;
+  row-gap: 1rem;
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-flow: column;
+  column-gap: 1rem;
+  justify-content: space-between;
+  b, span.wrap {
+    display: grid;
+  }
+}
+
+.flex-item {
+  flex: 1 1 auto;
+}
+
+.content {
+  padding-top:5rem;
+  width:100%;
+}
+
+.currency-converter {
+  width:50%;
+  float:left;
+}
+
+.currency-history {
+  width:50%;
+  float:right;
+}
+
+.header {
+  padding: 1.25rem 6.25rem 1.25rem 6.25rem;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.history-table {
+  width: 85%;
+}
+
+.mat-grid-tile {
+  overflow: visible;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

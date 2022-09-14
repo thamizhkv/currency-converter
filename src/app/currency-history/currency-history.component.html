@@ -1,0 +1,30 @@
+<h4>History ({{title}})</h4>
+<table mat-table [dataSource]="currencyInfo" class="mat-elevation-z8 history-table">
+  <ng-container matColumnDef="fxRate">
+    <th mat-header-cell *matHeaderCellDef> Real Time FX rate </th>
+    <td mat-cell *matCellDef="let element"> {{element.fxRate | number : '1.2-2'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="overrideRate">
+    <th mat-header-cell *matHeaderCellDef> Override Rate </th>
+    <td mat-cell *matCellDef="let element"> {{element.overrideRate | number : '1.2-2'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="overrideOpted">
+    <th mat-header-cell *matHeaderCellDef> Override Opted </th>
+    <td mat-cell *matCellDef="let element"> {{element.overrideOpted == true ? 'yes': 'no'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount | number : '1.2-2'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="convertedAmount">
+    <th mat-header-cell *matHeaderCellDef> Converted Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.convertedAmount | number : '1.2-2'}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="currencyColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: currencyColumns;"></tr>
+</table>
